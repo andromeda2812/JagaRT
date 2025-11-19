@@ -673,3 +673,620 @@ hr {
         margin: 5px 0;
     }
 }
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== LAYOUT DASHBOARD ===== */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* ===== SIDEBAR ADMIN ===== */
+.sidebar-admin {
+    width: 240px;
+    background: #ffffff;
+    border-right: 1px solid #e5e5e5;
+    height: 100vh;
+    padding: 20px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo-admin {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.logo-admin img {
+    width: 40px;
+}
+
+.logo-admin h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.text-highlight {
+    color: #ff9977; /* warna oranye utama */
+}
+
+/* NAV LINKS */
+.nav-links-admin {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-links-admin a {
+    text-decoration: none;
+    color: #111827; /* biru gelap */
+    padding: 12px 10px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.2s;
+}
+
+.nav-links-admin a:hover,
+.nav-links-admin a.active {
+    background: #ff9977; /* oranye */
+    color: #ffffff;
+}
+
+/* DROPDOWN USER */
+.sidebar-dropdown {
+    margin-top: 20px;
+}
+
+.dropdown-btn {
+    width: 100%;
+    background: #ffffff;
+    border: none;
+    text-align: left;
+    padding: 12px 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #111827;
+}
+
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    margin-top: 6px;
+    background: #f5f6f8;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.sidebar-dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 8px 8px;
+    border-radius: 6px;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+    background: #ff9977;
+    color: #ffffff;
+}
+
+/* ===== HEADER ===== */
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-top .search-box {
+    width: 260px;
+    height: 40px;
+    background: white;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    border: 1px solid #ddd;
+}
+
+.header-top input {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+}
+
+/* ===== CARDS & BOXES ===== */
+.card {
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin-bottom: 25px;
+}
+
+/* ===== TITLES ===== */
+.section-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+/* ===== FLEX GRID ===== */
+.grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+.grid-1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* ===== ABSENSI TERAKHIR ===== */
+.absensi-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+.absensi-item:last-child { border-bottom: none; }
+
+.absensi-item .name { 
+    font-weight: 500;
+    color: #111827;
+}
+
+.amount.plus { color: #28c76f; }
+.amount.minus { color: #ea5455; }
+
+/* GENERAL */
+.chart-box {
+    height: 250px;
+}
+
+/* agar seluruh konten ke kanan dari sidebar */
+.main-content-admin {
+    margin-left: 240px;
+    padding: 30px 40px;
+    background: #f5f6f8;
+    min-height: 100vh;
+}
+
+/* Welcome Section */
+.welcome-section .container-dashboard {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+/* Cards */
+.card-dashboard {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+}
+
+/* Grid layout */
+.dashboard-grid-2 {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* Absensi item */
+.absensi-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.absensi-item:last-child { border: none; }
+
+.amount.plus { color: #28c76f; }
+.amount.minus { color: #ea5455; }
+
+.jadwal-container {
+    margin-left: 240px;
+    padding: 30px 40px;
+}
+
+.header-jadwal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header-jadwal h1 {
+    color: #111827;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.btn-add {
+    background: #ff9977;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-add:hover {
+    background: #ff7b57;
+}
+
+.jadwal-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+}
+
+.jadwal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jadwal-table th {
+    background: #111827;
+    color: white;
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.jadwal-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    color: #111827;
+}
+
+.btn-hapus {
+    background: #ea5455;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-hapus:hover {
+    background: #d63f42;
+}
+
+/* ===== MODAL ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 25px;
+    width: 400px;
+    border-radius: 15px;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background: #ddd;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+}
+
+.btn-save {
+    background: #ff9977;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+}
+
+.btn-save:hover {
+    background: #ff7b57;
+}
+
+.jadwal-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.jadwal-header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.jadwal-header p {
+    color: #666;
+}
+
+.btn-tambah {
+    background: #ff8f70;
+    border: none;
+    padding: 10px 25px;
+    color: #fff;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.btn-tambah:hover {
+    opacity: .85;
+}
+
+.jadwal-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.jadwal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.jadwal-table thead {
+    background: #ffa685;
+    color: #fff;
+}
+
+.jadwal-table th,
+.jadwal-table td {
+    padding: 14px;
+    text-align: center;
+}
+
+.jadwal-table tbody tr:nth-child(even) {
+    background: #fff7f4;
+}
+
+.no-data {
+    padding: 20px;
+    font-weight: 600;
+    color: #555;
+}
+
+.absen-container {
+    margin-left: 240px;
+    padding: 30px 40px;
+}
+.header-absen h1 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.header-absen p {
+    color: #666;
+    margin-bottom: 25px;
+}
+.absen-card {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.absen-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.absen-table thead {
+    background: #ffa685;
+    color: #fff;
+}
+
+.absen-table th,
+.absen-table td {
+    padding: 14px;
+    text-align: center;
+}
+
+.absen-table tbody tr:nth-child(even) {
+    background: #fff7f4;
+}
+
+.no-data {
+    padding: 18px;
+    font-weight: 600;
+    color: #666;
+}
+.status-hadir {
+    color: #27ae60;
+    font-weight: 700;
+}
+
+.status-izin {
+    color: #f39c12;
+    font-weight: 700;
+}
+
+.status-alpa {
+    color: #e74c3c;
+    font-weight: 700;
+}
+.btn-foto {
+    background: #ff9977;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.btn-foto:hover {
+    background: #ff7b57;
+}
+
+.no-foto {
+    color: #777;
+}
+
+
+/* ==== Halaman Akun Warga (Admin) ==== */
+.page-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+/* ===== Layout agar tidak ketiban sidebar ===== */
+.akunwarga-container {
+    margin-left: 250px;   /* Sesuaikan dengan lebar sidebar */
+    padding: 30px;
+}
+
+/* === Table Wrapper === */
+.table-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+    overflow-x: auto;
+}
+
+/* === Table === */
+.table,
+.akun-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table thead,
+.akun-table thead {
+    background: #f3f4f6;
+}
+
+.table thead th,
+.akun-table thead th {
+    font-weight: 600;
+    color: #374151;
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table tbody td,
+.akun-table tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #f1f1f1;
+    vertical-align: middle;
+}
+
+.table tbody tr:hover,
+.akun-table tbody tr:hover {
+    background: #fafafa;
+}
+
+/* === Action Buttons Wrapper === */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* General Button Style */
+.btn-manage {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+/* Edit Button */
+.btn-edit {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #2563eb;
+}
+
+/* Delete Button */
+.btn-delete {
+    background: #ef4444;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+}
+
+/* Jika tidak ada data */
+.no-data {
+    padding: 15px;
+    color: #6b7280;
+    text-align: center;
+}

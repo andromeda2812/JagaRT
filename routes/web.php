@@ -8,6 +8,7 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\LaporanController;
 // use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WargaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,23 @@ Route::middleware('auth')->group(function () {
     Route::put('/profil/password', [UserController::class, 'updatePassword'])->name('profil.password');
 });
 
+Route::get('/admin/beranda', function () { return view('admin.beranda'); })->name('admin.beranda');
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');
 });
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.store');
+
+Route::get('/user/jadwal', [JadwalController::class, 'indexUser'])->name('jadwal.user');
+
+Route::get('/admin/jadwal', [JadwalController::class, 'indexAdmin'])->name('jadwal.admin');
+Route::post('/admin/jadwal/store', [JadwalController::class, 'store'])->name('jadwal.store');
+
+Route::get('/admin/absensi', [AbsenController::class, 'indexAdmin'])->name('admin.absensi');
+
+Route::get('/admin/akun-warga', [WargaController::class, 'index'])->name('admin.akun-warga');
+Route::get('/admin/akun-warga/{id}/edit', [WargaController::class, 'edit'])->name('admin.akun-warga.edit');
+Route::put('/admin/akun-warga/{id}', [WargaController::class, 'update'])->name('admin.akun-warga.update');
+Route::delete('/admin/akun-warga/{id}', [WargaController::class, 'destroy'])->name('admin.akun-warga.delete');

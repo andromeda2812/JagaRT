@@ -35,4 +35,14 @@ class AbsenController extends Controller
 
         return back()->with('success', 'Absensi berhasil disimpan.');
     }
+
+    public function indexAdmin()
+    {
+        $absensi = AbsensiRonda::with(['user', 'jadwal'])
+            ->orderBy('jadwal_id', 'desc')
+            ->get();
+
+        return view('admin.absensi', compact('absensi'));
+    }
+
 }

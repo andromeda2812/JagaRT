@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class JadwalController extends Controller
 {
-    public function index()
+    /**
+     * ============================
+     *  USER
+     * ============================
+     */
+    public function indexUser()
     {
         $userId = Auth::id();
 
@@ -20,5 +25,37 @@ class JadwalController extends Controller
         ->get();
 
         return view('user.jadwal', compact('jadwalRonda'));
+    }
+
+
+    /**
+     * ============================
+     *  ADMIN
+     * ============================
+     */
+    public function indexAdmin()
+    {
+        $jadwal = JadwalRonda::orderBy('tanggal_ronda', 'asc')->get();
+
+        return view('admin.jadwal', compact('jadwal'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'tanggal_ronda' => 'required|date',
+            'lokasi' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        JadwalRonda::create([
+            'tanggal_ronda' => $request->tanggal_ronda,
+            'lokasi' => $request->lokasi,
+            'keterangan' => $request->keterangan,
+            'dibuat_oleh' => Auth::id(),
+            'created_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Jadwal ronda berhasil ditambahkan!');
     }
 }
