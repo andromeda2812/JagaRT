@@ -1,5 +1,7 @@
 @extends('layouts.blank')
 
+@section('title', 'Daftar - JagaRT')
+
 @section('content')
 
 <style>
@@ -90,7 +92,7 @@
     }
 
     .btn-custom {
-        background-color: #111827;
+        background-color: #212121;
         color: #fff;
         width: 100%;
         border-radius: 6px;
@@ -106,7 +108,7 @@
     }
 
     .text-link {
-        color: #ff9977;
+        color: #212121;
         font-weight: 600;
         text-decoration: none;
         font-size: 13.5px;

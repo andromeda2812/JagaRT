@@ -31,7 +31,7 @@
             <div class="footer-brand">
                 <div class="footer-logo">
                     <img src="{{ asset('image/logo.png') }}" alt="Logo">
-                    <h3><span class="text-highlight">Jaga</span>RT</h3>
+                    <h3>Jaga<span class="text-highlight">RT</span></h3>
                 </div>
 
                 <div class="contact-info">

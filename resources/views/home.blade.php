@@ -14,7 +14,7 @@
                 <span class="text-highlight">JAGA</span>RT hadir untuk mendukung ronda malam dan laporan keamanan warga RT 04 secara online.
             </p>
             <br><br><br>
-            <a href="{{ route('login') }}" class="btn-hero">GABUNG SEKARANG</a>
+            <a href="{{ route('login') }}" class="btn-masuk">GABUNG SEKARANG</a>
         </div>
     </section>
 
