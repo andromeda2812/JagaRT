@@ -70,3 +70,8 @@ Route::get('/admin/akun-warga', [WargaController::class, 'index'])->name('admin.
 Route::get('/admin/akun-warga/{id}/edit', [WargaController::class, 'edit'])->name('admin.akun-warga.edit');
 Route::put('/admin/akun-warga/{id}', [WargaController::class, 'update'])->name('admin.akun-warga.update');
 Route::delete('/admin/akun-warga/{id}', [WargaController::class, 'destroy'])->name('admin.akun-warga.delete');
+
+Route::get('/admin/laporan', [LaporanController::class, 'index'])->name('admin.laporan');
+Route::get('/admin/laporan/{id}', [LaporanController::class, 'show'])->name('admin.laporan.show');
+Route::delete('/admin/laporan/{id}', [LaporanController::class, 'destroy'])->name('admin.laporan.delete');
+

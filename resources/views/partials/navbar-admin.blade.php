@@ -31,7 +31,7 @@
             <i class="bi bi-people"></i> Akun Warga
         </a>
 
-        <a href="#" class="{{ request()->is('admin/laporan*') ? 'active' : '' }}">
+        <a href="/admin/laporan" class="{{ request()->is('admin/laporan*') ? 'active' : '' }}">
             <i class="bi bi-file-earmark-text"></i> Laporan Kejadian
         </a>
 
