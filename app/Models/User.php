@@ -39,4 +39,8 @@ class User extends Authenticatable
     public function laporan() {
         return $this->hasMany(LaporanKejadian::class, 'user_id');
     }
+    public function jadwal()
+    {
+        return $this->belongsToMany(JadwalRonda::class, 'jadwal_users', 'user_id', 'jadwal_id');
+    }
 }

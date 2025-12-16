@@ -21,6 +21,11 @@ class JadwalRonda extends Model
         'created_at',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'jadwal_users', 'jadwal_id', 'user_id');
+    }
+
     public function absensi()
     {
         return $this->hasMany(AbsensiRonda::class, 'jadwal_id', 'jadwal_id');

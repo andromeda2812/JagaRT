@@ -9,11 +9,6 @@
     {{-- Menu --}}
     <nav class="nav-links-admin">
 
-        <a href="{{ route('admin.beranda') }}" 
-           class="{{ request()->routeIs('admin.beranda') ? 'active' : '' }}">
-            <i class="bi bi-speedometer2"></i> Beranda
-        </a>
-
         <a href="{{ route('admin.dashboard') }}" 
            class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
             <i class="bi bi-speedometer2"></i> Dasbor
@@ -35,28 +30,13 @@
             <i class="bi bi-file-earmark-text"></i> Laporan Kejadian
         </a>
 
-        {{-- USER DROPDOWN --}}
-        <div class="sidebar-dropdown">
-            <button class="dropdown-btn">
-                <i class="bi bi-person-circle"></i>
-                {{ Auth::user()->username ?? 'User' }}
-                <i class="bi bi-caret-down-fill ms-1"></i>
-            </button>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
 
-            <div class="dropdown-content">
-                <a href="{{ route('user.profil') }}">
-                    <i class="bi bi-person"></i> Profil
-                </a>
-
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit">
-                        <i class="bi bi-box-arrow-right"></i> Logout
-                    </button>
-                </form>
-            </div>
-        </div>
-
+        <form id="logoutForm" method="POST" action="{{ route('logout') }}" style="display: none;">
+            @csrf
+        </form>    
     </nav>
 
 </aside>

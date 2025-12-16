@@ -11,7 +11,7 @@ class LaporanKejadian extends Model
 
     protected $table = 'laporan_kejadian';
     protected $primaryKey = 'laporan_id';
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'user_id',
@@ -20,7 +20,6 @@ class LaporanKejadian extends Model
         'deskripsi',
         'foto_bukti',
         'status_laporan',
-        'dibuat_pada',
     ];
 
     public function user()

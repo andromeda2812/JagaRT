@@ -7,9 +7,9 @@
     <nav class="nav-links">
         <a href="{{ route('home') }}">Beranda</a>
         <a href="#tentang">Tentang</a>
-        <a href="#hubungi">Hubungi Kami</a>
+        <a href="#contact">Hubungi Kami</a>
         <div class="auth-buttons">
-            <a href="{{ route('login') }}" class="btn-masuk"><b>MASUK</b></a>
+            <a href="{{ route('login') }}" class="btn-login"><b>MASUK</b></a>
             <a href="{{ route('register') }}" class="btn-daftar"><b>DAFTAR</b></a>
         </div>
     </nav>

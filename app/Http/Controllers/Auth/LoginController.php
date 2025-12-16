@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -15,27 +16,45 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // validasi
+        // Validasi
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
+        // Ambil user berdasarkan username
+        $user = User::where('username', $request->username)->first();
+
+        // Cek jika user ditemukan
+        if ($user) {
+            // Cek status akun
+            if ($user->status === 'nonaktif') {
+                return back()->with([
+                    'status_inactive' => true,
+                    'message' => 'Akun Anda telah dinonaktifkan. Silakan hubungi admin.'
+                ]);
+            }
+        }
+
+        // Auth attempt
         if (Auth::attempt(
             ['username' => $credentials['username'], 'password' => $credentials['password']], 
-            $request->filled('remember'))) {
+            $request->filled('remember')
+        )) {
             $request->session()->regenerate();
 
-            // redirect berdasarkan role
+            // Arahkan berdasarkan role
             $user = Auth::user();
             if ($user->role === 'admin') {
-                return redirect()->intended('/admin/dashboard');
+                return redirect('/admin/dashboard');
             }
             return redirect()->intended('/user/dashboard');
         }
 
-        // gagal login
-        return back()->withErrors(['username' => 'Username atau password salah'])->withInput();
+        // Login gagal
+        return back()
+            ->withErrors(['username' => 'Username atau password salah'])
+            ->withInput();
     }
 
     public function logout(Request $request)

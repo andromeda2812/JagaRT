@@ -1,9 +1,48 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('navbar')
+    @include('partials.sidebar-admin') 
+@endsection
 
 @section('content')
+<style>
+    .filter-card {
+        background: #fff;
+        padding: 16px 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
 
-{{-- Sidebar --}}
-@include('partials.navbar-admin')
+    .filter-group {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .filter-input,
+    .filter-select {
+        flex: 1;
+        min-width: 180px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+    }
+
+    .btn-filter {
+        background: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 10px 18px;
+        border-radius: 8px;
+    }
+
+    @media (max-width: 576px) {
+        .filter-group {
+            flex-direction: column;
+        }
+    }
+</style>
 
 <div class="absen-container">
 
@@ -11,6 +50,37 @@
         <h1>Data Absensi Ronda</h1>
         <p>Berikut daftar warga yang melakukan absensi ronda.</p>
     </div>
+
+    {{-- FILTER --}}
+    <form method="GET" action="{{ route('admin.absensi') }}" class="filter-card">
+        <div class="filter-group">
+            <input 
+                type="text" 
+                name="nama" 
+                class="filter-input"
+                placeholder="Cari nama warga..."
+                value="{{ request('nama') }}"
+            >
+
+            <select name="status" class="filter-select">
+                <option value="">Semua Status</option>
+                <option value="hadir" {{ request('status')=='hadir' ? 'selected' : '' }}>Hadir</option>
+                <option value="izin" {{ request('status')=='izin' ? 'selected' : '' }}>Izin</option>
+                <option value="alpa" {{ request('status')=='alpa' ? 'selected' : '' }}>Alpa</option>
+            </select>
+
+            <input 
+                type="date" 
+                name="tanggal" 
+                class="filter-input"
+                value="{{ request('tanggal') }}"
+            >
+
+            <button type="submit" class="btn-filter">
+                Filter
+            </button>
+        </div>
+    </form>
 
     <div class="absen-card">
 
@@ -28,14 +98,14 @@
             <tbody>
                 @forelse ($absensi as $a)
                 <tr>
-                    <td>{{ $a->user->nama ?? '-' }}</td>
+                    <td>{{ $a->user->nama_lengkap ?? '-' }}</td>
                     <td>{{ $a->jadwal?->tanggal_ronda ? date('d M Y', strtotime($a->jadwal->tanggal_ronda)) : '-' }}</td>
 
                     <td class="status-{{ $a->status }}">
                         {{ ucfirst($a->status) }}
                     </td>
 
-                    <td>{{ $a->waktu_absen ? date('H:i d-m-Y', strtotime($a->waktu_absen)) : '-' }}</td>
+                    <td>{{ \Carbon\Carbon::parse($a->waktu_absen)->format('H:i d-m-Y') }}</td>
 
                     <td>
                         @if ($a->bukti_foto)

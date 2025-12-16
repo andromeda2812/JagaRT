@@ -227,7 +227,7 @@
       <div class="tab-content mt-3">
         <!-- Tab Edit Profil -->
         <div class="tab-pane fade show active" id="edit" role="tabpanel">
-          <form action="{{ route('profil.update') }}" method="POST" enctype="multipart/form-data">
+          <form action="{{ route('user.profil.update') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -265,7 +265,7 @@
 
         <!-- Tab Ubah Password -->
         <div class="tab-pane fade" id="password" role="tabpanel">
-          <form action="{{ route('profil.password') }}" method="POST">
+          <form action="{{ route('user.profil.password') }}" method="POST">
             @csrf
             @method('PUT')
 

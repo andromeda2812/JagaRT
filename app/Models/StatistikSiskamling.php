@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class StatistikSiskamling extends Model
 {
     use HasFactory;
+
+    protected $table = 'statistik_siskamling'; // ← tambahkan ini!
+    protected $primaryKey = 'statistik_id';
+    public $incrementing = true; 
+    protected $keyType = 'int';
 }

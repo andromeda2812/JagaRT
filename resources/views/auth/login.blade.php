@@ -3,7 +3,7 @@
 @section('title', 'Masuk - JagaRT')
 
 @section('content')
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
     body {
         margin: 0;
@@ -196,10 +196,12 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
-                <input type="checkbox" id="remember" name="remember">
-                <label for="remember" class="ms-1">Ingat saya</label>
+                <!-- <input type="checkbox" id="remember" name="remember"> -->
+                <!-- <label for="remember" class="ms-1">Ingat saya</label> -->
             </div>
-            <a href="#" class="text-link">Lupa kata sandi?</a>
+            <a href="#" class="text-link" data-bs-toggle="modal" data-bs-target="#modalLupaPassword">
+                Lupa kata sandi?
+            </a>
         </div>
 
         <button type="submit" class="btn btn-dark w-100 mb-3 fw-semibold">Selanjutnya</button>
@@ -209,5 +211,90 @@
         <p>Belum punya akun? <a href="{{ route('register') }}" class="text-link">Daftar Sekarang</a></p>
     </div>
 </div>
+
+<!-- Modal Lupa Password -->
+<div class="modal fade" id="modalLupaPassword" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 18px; padding: 10px 5px;">
+      
+      <form method="POST" action="{{ route('password.email') }}">
+        @csrf
+
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-semibold">Reset Kata Sandi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body px-4 pb-4">
+          <p class="text-muted mb-3" style="font-size: 13px;">
+            Masukkan email terdaftar untuk menerima link reset password.
+          </p>
+
+          <div class="form-group">
+            <input type="email" name="email" class="form-control" placeholder=" " required>
+            <label class="form-label">Email</label>
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100 fw-semibold mt-3">
+            Kirim Link Reset
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = function(){
+        document.getElementById('previewFoto').src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+
+@push('scripts')
+@if (session('status_inactive'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Akun Tidak Aktif',
+                text: "{{ session('message') }}",
+                confirmButtonColor: '#A42421'
+            });
+        });
+    </script>
+@endif
+
+@if (session('reset_success'))
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: 'Link reset password telah dikirim ke email Anda.',
+        confirmButtonColor: '#212121'
+    });
+});
+</script>
+@endif
+
+@if (session('reset_done'))
+<script>
+Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: 'Password berhasil diubah. Silakan login.',
+    confirmButtonColor: '#212121'
+});
+</script>
+@endif
+@endpush
 
 @endsection

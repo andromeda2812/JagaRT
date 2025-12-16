@@ -8,6 +8,10 @@
 
 @section('content')
 <style>
+    .jadwal-thead th {
+        background-color: #ff9977 !important;
+        color: white !important;
+    }
     .jadwal-section {
         padding: 60px 20px;
         background-color: #f9fafb;
@@ -68,53 +72,79 @@
 
         <div class="table-responsive">
             <table class="table table-bordered jadwal-table">
-                <thead class="table-dark">
+                <thead class="jadwal-thead">
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
                         <th>Lokasi</th>
                         <th>Keterangan</th>
                         <th>Status Absen</th>
-                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($jadwalRonda as $index => $jadwal)
                         @php
                             $absen = $jadwal->absensi->first();
+
+                            // Hari ronda
+                            $tanggalRonda = \Carbon\Carbon::parse($jadwal->tanggal_ronda);
+
+                            // Aturan jam ronda → mulai jam 21:00 sampai 23:59
+                            $mulaiAbsen = $tanggalRonda->copy()->setTime(21, 0, 0);
+                            $batasAbsen = $tanggalRonda->copy()->setTime(23, 59, 59);
+
+                            $now = \Carbon\Carbon::now();
+
+                            // Tentukan status tampil
+                            if (! $absen) {
+                                $displayStatus = 'none';
+                            } else {
+                                $displayStatus = $absen->status;
+                            }
+
+                            // Aturan: boleh absen hanya jika hari & jam sesuai
+                            $bolehAbsen = false;
+
+                            if ($absen && $displayStatus === 'belum') {
+                                if ($now->between($mulaiAbsen, $batasAbsen)) {
+                                    $bolehAbsen = true;
+                                }
+                            }
                         @endphp
                         <tr>
                             <td>{{ $index + 1 }}</td>
                             <td>{{ \Carbon\Carbon::parse($jadwal->tanggal_ronda)->translatedFormat('l, d F Y') }}</td>
                             <td>{{ $jadwal->lokasi }}</td>
                             <td>{{ $jadwal->keterangan ?? '-' }}</td>
+
                             <td>
-                                @if (!$absen)
-                                    <span class="badge bg-secondary">Belum Ada</span>
-                                @else
-                                    @if ($absen->status === 'hadir')
-                                        <span class="badge bg-success">Hadir</span>
-                                    @elseif ($absen->status === 'izin')
-                                        <span class="badge bg-warning text-dark">Izin</span>
-                                    @elseif ($absen->status === 'alpa')
-                                        <span class="badge bg-danger">Alpa</span>
-                                    @else
-                                        <span class="badge bg-secondary">Belum Absen</span>
-                                    @endif
-                                @endif
-                            </td>
-                            <td>
-                                @if ($absen && $absen->status)
-                                    <button class="btn btn-sm btn-secondary" disabled>Sudah Absen</button>
-                                @elseif ($absen)
+                                @if ($displayStatus === 'none')
+                                    <span class="btn btn-sm btn-secondary disabled">-</span>
+
+                                @elseif ($bolehAbsen)
                                     <button 
-                                        class="btn btn-sm btn-absen" 
-                                        data-bs-toggle="modal" 
+                                        class="btn btn-sm btn-info"
+                                        data-bs-toggle="modal"
                                         data-bs-target="#absenModal{{ $absen->absensi_id }}">
                                         Absen
                                     </button>
+
+                                @elseif ($displayStatus === 'belum')
+                                    <span class="btn btn-sm btn-secondary disabled">
+                                        Menunggu Waktu
+                                    </span>
+
+                                @elseif ($displayStatus === 'hadir')
+                                    <span class="btn btn-sm btn-success disabled">Hadir</span>
+
+                                @elseif ($displayStatus === 'izin')
+                                    <span class="btn btn-sm btn-warning text-dark disabled">Izin</span>
+
+                                @elseif ($displayStatus === 'alpa')
+                                    <span class="btn btn-sm btn-danger disabled">Alpa</span>
+
                                 @else
-                                    <span class="text-muted">-</span>
+                                    <span class="btn btn-sm btn-secondary disabled">-</span>
                                 @endif
                             </td>
                         </tr>
@@ -124,7 +154,7 @@
                         <div class="modal fade" id="absenModal{{ $absen->absensi_id }}" tabindex="-1" aria-labelledby="absenLabel{{ $absen->absensi_id }}" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form action="{{ route('absen.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('user.absen.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="absenLabel{{ $absen->absensi_id }}">Form Absensi Ronda</h5>

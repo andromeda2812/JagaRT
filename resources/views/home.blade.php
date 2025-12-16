@@ -24,22 +24,22 @@
                 <div class="service-card light">
                     <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
                     <h4>Jadwal Ronda</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#">Lihat Jadwal Ronda →</a>
+                    <p>Kelola dan lihat jadwal ronda warga secara teratur agar keamanan lingkungan tetap terjaga.</p>
+                    <a href="{{ route('user.jadwal') }}">Lihat Jadwal Ronda →</a>
                 </div>
 
                 <div class="service-card red">
                     <div class="icon"><i class="fa-solid fa-bell"></i></div>
                     <h4>Absensi Ronda</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#">Absen Sekarang →</a>
+                    <p>Lakukan absensi kehadiran saat ronda dengan cepat dan akurat langsung dari sistem.</p>
+                    <a href="{{ route('user.jadwal') }}">Absen Sekarang →</a>
                 </div>
 
                 <div class="service-card dark">
                     <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
                     <h4>Laporan Kejadian</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <a href="#">Buat Laporan Kejadian →</a>
+                    <p>Laporkan kejadian di lingkungan sekitar secara mudah agar dapat segera ditindaklanjuti.</p>
+                    <a href="{{ route('user.laporan') }}">Buat Laporan Kejadian →</a>
                 </div>
             </div>
         </div>
@@ -55,10 +55,8 @@
                 <p>
                     JagaRT adalah sistem keamanan lingkungan berbasis digital yang dirancang untuk membantu warga dalam memantau ronda, kejadian, serta informasi penting di lingkungan RT.
                 </p>
-                <a href="#hubungi" class="btn-about">Pelajari Lebih Lanjut</a>
+                <a href="#" class="btn-about">Pelajari Lebih Lanjut</a>
             </div>
         </div>
     </section>
-
-    <section class="contact" id="hubungi"></section>
 @endsection

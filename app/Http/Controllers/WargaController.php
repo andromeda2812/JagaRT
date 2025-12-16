@@ -10,13 +10,23 @@ class WargaController extends Controller
     /**
      * Menampilkan seluruh akun warga.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil semua user dengan role 'warga' / 'user'
-        $warga = User::where('role', 'warga')->get();
+        $query = User::where('role', 'warga');
 
-       return view('admin.akun-warga', compact('warga'));
+        // Filter Status
+        if ($request->status) {
+            $query->where('status', $request->status);
+        }
 
+        // Filter Nama (search)
+        if ($request->search) {
+            $query->where('nama_lengkap', 'LIKE', '%'.$request->search.'%');
+        }
+
+        $warga = $query->orderBy('nama_lengkap')->get();
+
+        return view('admin.akun-warga', compact('warga'));
     }
 
     /**
@@ -28,44 +38,14 @@ class WargaController extends Controller
         return view('admin.akun-warga.show', compact('warga'));
     }
 
-    /**
-     * Form edit warga (opsional).
-     */
-    public function edit($id)
-    {
-        $warga = User::findOrFail($id);
-        return view('admin.akun-warga.edit', compact('warga'));
-    }
-
-    /**
-     * Update data warga.
-     */
-    public function update(Request $request, $id)
+    public function toggleStatus($id)
     {
         $warga = User::findOrFail($id);
 
-        $validated = $request->validate([
-            'nama_lengkap' => 'required|string|max:100',
-            'username'     => 'required|string|max:50',
-            'no_hp'        => 'nullable|string|max:20',
-            'alamat'       => 'nullable|string|max:255',
-        ]);
+        // Toggle status
+        $warga->status = ($warga->status === 'aktif') ? 'nonaktif' : 'aktif';
+        $warga->save();
 
-        $warga->update($validated);
-
-        return redirect()->route('admin.akun-warga')
-                        ->with('success', 'Data warga berhasil diperbarui.');
-    }
-
-    /**
-     * Hapus akun warga.
-     */
-    public function destroy($id)
-    {
-        $warga = User::findOrFail($id);
-        $warga->delete();
-
-        return redirect()->route('admin.akun-warga')
-                        ->with('success', 'Akun warga berhasil dihapus.');
+        return back()->with('success', 'Status akun berhasil diperbarui.');
     }
 }

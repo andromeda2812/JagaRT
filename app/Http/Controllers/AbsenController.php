@@ -36,13 +36,33 @@ class AbsenController extends Controller
         return back()->with('success', 'Absensi berhasil disimpan.');
     }
 
-    public function indexAdmin()
+    public function indexAdmin(Request $request)
     {
-        $absensi = AbsensiRonda::with(['user', 'jadwal'])
+        $query = AbsensiRonda::with(['user', 'jadwal']);
+
+        // Filter Nama Warga
+        if ($request->filled('nama')) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('nama_lengkap', 'like', '%' . $request->nama . '%');
+            });
+        }
+
+        // Filter Status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter Tanggal Ronda
+        if ($request->filled('tanggal')) {
+            $query->whereHas('jadwal', function ($q) use ($request) {
+                $q->whereDate('tanggal_ronda', $request->tanggal);
+            });
+        }
+
+        $absensi = $query
             ->orderBy('jadwal_id', 'desc')
             ->get();
 
         return view('admin.absensi', compact('absensi'));
     }
-
 }

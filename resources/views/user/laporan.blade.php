@@ -115,7 +115,7 @@
 <div class="modal fade" id="tambahLaporanModal" tabindex="-1" aria-labelledby="tambahLaporanLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form action="{{ route('laporan.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('user.laporan.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold" id="tambahLaporanLabel">Tambah Laporan Kejadian</h5>

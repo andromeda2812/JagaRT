@@ -1,11 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', 'Beranda - JagaRT')
 
-@section('content')
+@section('navbar')
+    @include('partials.sidebar-admin') 
+@endsection
 
-{{-- Sidebar Admin --}}
-@include('partials.navbar-admin')
+@section('content')
 
 <style>
     body {

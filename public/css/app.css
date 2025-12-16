@@ -127,12 +127,29 @@ header {
     background-color: transparent;
 }
 
+.btn-login {
+    background-color: #ff9977;
+    border: 2px solid #ff9977;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 7px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: transparent;
+}
+
 .btn-daftar {
     background-color: transparent;
     border: 2px solid #ff9977;
     color: #ff9977;
     font-weight: 600;
-    padding: 10px 28px;
+    font-size: 14px;
+    padding: 7px 20px;
     border-radius: 30px;
     text-decoration: none;
     transition: 0.3s ease;
@@ -301,39 +318,120 @@ header {
 }
 
 /* ===== FOOTER ===== */
-footer {
-    background-color: #fff;
-    padding: 50px 60px 30px;
-    border-top: 1px solid #eee;
-}
-
-.footer-top {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.footer-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 15px;
+.footer {
+    background-color: #ffffff;
+    font-size: 14px;
 }
 
 .footer-logo img {
     width: 40px;
 }
 
+.footer-logo {
+    padding-left: 12px;
+}
+
+@media (min-width: 992px) {
+    .footer-logo {
+        padding-left: 20px;
+    }
+}
+
+
+.footer-contact {
+    color: #6c757d;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.contact-item i {
+    color: #ff6b3d;
+    margin-right: 8px;
+    font-size: 15px;
+}
+
+.contact-row {
+    display: flex;
+    gap: 30px;
+}
+
+.footer-contact li {
+    margin-bottom: 10px;
+    color: #6c757d;
+}
+
+.footer-contact i {
+    color: #ff6b3d;
+    margin-right: 8px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #f5f6f7;
+    color: #0d6efd;
+    margin-right: 5px;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+.footer-social-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-contact,
+.footer-social-wrapper {
+    max-width: 520px;
+    width: 100%;
+    text-align: left;
+}
+
+.footer-links a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #212529;
+    font-weight: 500;
+}
+
+.footer-links a:hover {
+    color: #ff6b3d;
+}
+
 .text-highlight {
     color: #ff9977;
+}
+
+.footer-divider-top {
+    border: none;
+    border-top: 2px solid #ff7b60;
+    margin: 0 0 40px;
+}
+
+.footer-divider-bottom {
+    border: none;
+    border-top: 1px solid grey;
+    margin: 25px 0;
 }
 
 .footer-brand p {
     font-size: 14px;
     color: #555;
     margin: 4px 0;
+    max-width: 520px;
 }
 
 .contact-info i {
@@ -343,6 +441,13 @@ footer {
 
 .social-icons {
     margin-top: 15px;
+}
+
+.social-label {
+    font-weight: 500;
+    color: #6c757d;
+    white-space: nowrap;
+    font-size: 13px;
 }
 
 .social-icons .icons a {
@@ -356,14 +461,13 @@ footer {
     color: #ff7b60;
 }
 
-hr {
-    border: none;
-    border-top: 1px solid #ff7b60;
-    margin: 25px 0;
-}
-
 .footer-bottom {
     text-align: center;
+}
+
+.footer-bottom p {
+    color: grey;
+    font-size: 12.5px;
 }
 
 .footer-links {
@@ -372,7 +476,7 @@ hr {
 
 .footer-links a {
     color: #444;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     margin: 0 10px;
@@ -387,6 +491,12 @@ hr {
     color: #888;
     font-size: 13px;
     margin-top: 10px;
+}
+
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* INI KUNCI UTAMA */
 }
 
 /* ===== PROFILE PAGE ===== */
@@ -455,74 +565,6 @@ hr {
 
 .logout-btn:hover {
     background-color: #e8674d;
-}
-
-/* ===== JADWAL RONDA PAGE ===== */
-.jadwal-section {
-    background-color: #ffffff;
-    padding: 80px 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.jadwal-container {
-    max-width: 900px;
-    width: 100%;
-    background: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    padding: 40px;
-    text-align: center;
-}
-
-.jadwal-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #111827;
-    margin-bottom: 10px;
-}
-
-.jadwal-desc {
-    font-size: 15px;
-    color: #6b7280;
-    margin-bottom: 30px;
-}
-
-.jadwal-table-wrapper {
-    overflow-x: auto;
-}
-
-.jadwal-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-}
-
-.jadwal-table th {
-    background-color: #ff9977;
-    color: white;
-    padding: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 14px;
-}
-
-.jadwal-table td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    color: #333;
-    font-size: 15px;
-}
-
-.jadwal-table tr:hover {
-    background-color: #fff3f0;
-}
-
-.empty-row {
-    color: #999;
-    font-style: italic;
 }
 
 /* ===== ABSENSI PAGE ===== */
@@ -1266,12 +1308,13 @@ hr {
 
 /* Edit Button */
 .btn-edit {
-    background: #3b82f6;
+    background: red;
     color: white;
+    text-decoration: none;
 }
 
 .btn-edit:hover {
-    background: #2563eb;
+    background: #ff9977;
 }
 
 /* Delete Button */
