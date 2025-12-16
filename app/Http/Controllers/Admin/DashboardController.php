@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\JadwalRonda;
 use App\Models\AbsensiRonda;
 use App\Models\LaporanKejadian;
-use App\Models\StatistikSiskamling;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
